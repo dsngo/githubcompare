@@ -8,12 +8,6 @@
   "scripts": {
     "dev": "webpack-dev-server --open"
   },
-  "babel": {
-    "presets": [
-      "env",
-      "react"
-    ]
-  },
   "dependencies": {
     "axios": "^0.16.2",
     "prop-types": "^15.5.10",
