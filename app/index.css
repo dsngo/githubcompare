@@ -9,6 +9,10 @@ body {
     Helvetica Neue,
     sans-serif;
 }
+a {
+  text-decoration: none;
+  color: #d0021b;
+}
 
 ul {
   padding: 0;
@@ -63,17 +67,12 @@ li {
   display: flex;
 }
 
-.active {
-  font-weight: bold;
-}
-
 .nav li {
   margin-right: 15px;
 }
 
-a {
-  text-decoration: none;
-  color: #d0021b;
+.active {
+  font-weight: bold;
 }
 
 .home-container {
