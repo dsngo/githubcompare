@@ -1,7 +1,10 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { render } from 'react-dom';
 import App from './components/App';
 
 require('./index.css');
 
-ReactDOM.render(<App />, document.getElementById('app'));
+const renderApp = () => {
+  render(<App />, document.getElementById('app'));
+};
+renderApp();

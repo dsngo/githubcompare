@@ -56,9 +56,20 @@ const zoo1 = new Zoo(animalArr);
 // const zoo2 = [...zoo1];
 // console.log(zoo2);
 
-function test(arr) {
-  if (!Array.isArray(arr)) throw new Error('wrongtype').toString();
-  console.log(arr);
-}
+// function test(arr) {
+//   if (!Array.isArray(arr)) throw new Error('wrongtype').toString();
+//   console.log(arr);
+// }
 
-test([1, 2, 3, 4]);
+// test([1, 2, 3, 4]);
+
+// function test4(a) {
+//   console.log(a)
+// }
+// test4(...[1,2])
+
+const flattened = [[0, 1, [1, 2, 3]], [2, 3], [4, 5]].reduce(
+  (acc, cur) => acc.concat(cur),
+  []
+);
+console.log(flattened);

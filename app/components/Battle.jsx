@@ -1,28 +1,8 @@
 import React from 'react';
-import { string, func } from 'prop-types';
+import { string, func, shape } from 'prop-types';
 import { Link } from 'react-router-dom';
+import PlayerPreview from './PlayerPreview';
 
-const PlayerPreview = props =>
-  <div>
-    <div className="column">
-      <img
-        src={props.avatar}
-        alt={`Avatar for ${props.username}`}
-        className="avatar"
-      />
-      <h2 className="username">@{props.username}</h2>
-    </div>
-    <button className="reset" onClick={() => props.onReset(props.id)}>
-      Reset
-    </button>
-  </div>;
-
-PlayerPreview.propTypes = {
-  avatar: string.isRequired,
-  username: string.isRequired,
-  onReset: func.isRequired,
-  id: string.isRequired,
-};
 class PlayerInput extends React.Component {
   constructor(props) {
     super(props);
@@ -116,19 +96,23 @@ class Battle extends React.Component {
               onSubmit={this.handleSubmit}
             />}
           {playerOneImage &&
-            <PlayerPreview
-              avatar={playerOneImage}
-              username={playerOneName}
-              onReset={this.handleReset}
-              id="playerOne"
-            />}
+            <PlayerPreview avatar={playerOneImage} username={playerOneName}>
+              <button
+                className="reset"
+                onClick={() => this.handleReset('playerOne')}
+              >
+                Reset
+              </button>
+            </PlayerPreview>}
           {playerTwoImage &&
-            <PlayerPreview
-              avatar={playerTwoImage}
-              username={playerTwoName}
-              onReset={this.handleReset}
-              id="playerTwo"
-            />}
+            <PlayerPreview avatar={playerTwoImage} username={playerTwoName}>
+              <button
+                className="reset"
+                onClick={() => this.handleReset('playerTwo')}
+              >
+                Reset
+              </button>
+            </PlayerPreview>}
           {!playerTwoName &&
             <PlayerInput
               id="playerTwo"
@@ -151,4 +135,9 @@ class Battle extends React.Component {
     );
   }
 }
+
+Battle.propTypes = {
+  match: shape({}).isRequired,
+};
+
 export default Battle;

@@ -1,8 +1,9 @@
 const path = require('path');
+const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const DuplicatePackageCheckerPlugin = require('duplicate-package-checker-webpack-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
-module.exports = {
+const config = {
   entry: './app/index.jsx',
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -22,9 +23,25 @@ module.exports = {
     ],
   },
   plugins: [
+    // new BundleAnalyzerPlugin(),
     new HtmlWebpackPlugin({
       template: 'app/index.html',
     }),
-    new DuplicatePackageCheckerPlugin(),
   ],
 };
+
+if (process.env.NODE_ENV === 'production') {
+  config.plugins.push(
+    new webpack.DefinePlugin({
+      'process.env': {
+        NODE_ENV: '"production"',
+      },
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      compress: {
+        warnings: false,
+      },
+    })
+  );
+}
+module.exports = config;
